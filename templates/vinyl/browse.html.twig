@@ -36,18 +36,17 @@
 								|
 								<span>{{ mix.genre }}</span>
 								|
-
+								<span>{{ mix.createdAt|ago }}</span>
 								<br>
 								{{ mix.votesString }}votes
 							</p>
 						</div>
 					</div>
 				{% endfor %}
+				{% if pager.hasNextPage %}
+					<turbo-frame id="mix-browse-list-{{ pager.nextPage }}" src="{{ pagerfanta_page_url(pager, pager.nextPage) }}" loading="lazy"></turbo-frame>
+				{% endif %}
 			</div>
-			{% if pager.hasNextPage %}
-				<turbo-frame id="mix-browse-list-{{ pager.nextPage }}" src="{{ pagerfanta_page_url(pager, pager.nextPage) }}" loading="lazy"></turbo-frame>
-			{% endif %}
-
 		</turbo-frame>
 	</div>
 </div>{% endblock %}
